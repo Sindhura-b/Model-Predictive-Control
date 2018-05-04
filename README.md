@@ -56,3 +56,17 @@ cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
 
 epsi[t+1] = psi[t] - psi_des + v[t]/Lf * delta[t] * dt
 ```
+
+The model has 6 states which include:
+
+x position (x)
+y position (y)
+yaw angle (psi)
+velocity (v)
+cross track error (cte)
+yaw angle error (epsi)
+
+The two actuator inputs are:
+
+steering angle (delta)
+acceleration (a)
