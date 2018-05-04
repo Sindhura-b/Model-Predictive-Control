@@ -106,17 +106,17 @@ int main() {
           
           size_t n_way_points=ptsx.size();
           Eigen::VectorXd way_points_x(n_way_points);
-	      Eigen::VectorXd way_points_y(n_way_points);
-	      for(int i=0;i<n_way_points;i++){
+	  Eigen::VectorXd way_points_y(n_way_points);
+	  for(int i=0;i<n_way_points;i++){
              way_points_x[i]=cos(psi)*(ptsx[i]-px)+sin(psi)*(ptsy[i]-py);
-	         way_points_y[i]=-sin(psi)*(ptsx[i]-px)+cos(psi)*(ptsy[i]-py);
+	     way_points_y[i]=-sin(psi)*(ptsx[i]-px)+cos(psi)*(ptsy[i]-py);
           }
           
-	      auto coeffs=polyfit(way_points_x,way_points_y,3);
-	      px=0;
-	      py=0;
-	      psi=0;
-	      double cte=polyeval(coeffs,px)-py;
+	  auto coeffs=polyfit(way_points_x,way_points_y,3);
+	  px=0;
+	  py=0;
+	  psi=0;
+	  double cte=polyeval(coeffs,px)-py;
           double epsi=psi-atan(coeffs[1]);
           
           double px_lat=px+(v*cos(psi)*latency);
@@ -127,10 +127,10 @@ int main() {
           double epsi_lat=epsi-(v*atan(coeffs[1])*latency/2.67);
           
           Eigen::VectorXd state(6);
-	      state<<px_lat,py_lat,psi_lat,v_lat,cte_lat,epsi_lat;
+	  state<<px_lat,py_lat,psi_lat,v_lat,cte_lat,epsi_lat;
 	      //cout<<state<<endl;
 	      //cout<<coeffs<<endl;
-	      auto solution=mpc.Solve(state,coeffs);
+	  auto solution=mpc.Solve(state,coeffs);
           double steer_value=solution[0]/deg2rad(25);
           double throttle_value=solution[1];
 
