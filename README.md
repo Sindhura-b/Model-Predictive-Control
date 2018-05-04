@@ -94,6 +94,6 @@ Latency of 100sec is included between actuation commands which is usually the ca
 
 The vehicle drives around the track safely after tuning the weights associated with the cost function and parameters of the  prediction horizon. The maximum speed reached by the vehicle during simulation is 40 mph.
 
-
+<img src="./simulation.png" width="450" height="350"> 
 
 
