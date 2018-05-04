@@ -59,21 +59,21 @@ epsi[t+1] = psi[t] - psi_des + v[t]/Lf * delta[t] * dt
 
 The model has 6 states which include:
 
-x position (x)
+* x position (x)
 
-y position (y)
+* y position (y)
 
-yaw angle (psi)
+* yaw angle (psi)
 
-velocity (v)
+* velocity (v)
 
-cross track error (cte)
+* cross track error (cte)
 
-yaw angle error (epsi)
+* yaw angle error (epsi)
 
 
 The model also has two actuator inputs which include:
 
-steering angle (delta)
+* steering angle (delta)
 
-acceleration (a)
+* acceleration (a)
