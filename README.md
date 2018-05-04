@@ -43,8 +43,16 @@ In this project MPC controller has been implemented to manuever the vehicle arou
 
 Model predictive control uses an optimizer to determine the control inputs and minimiza the cost function. The MPC setup requires definition of a kinematic model of the system, constraints, cost function and length of prediction horizon. As we are dealing with a vehicle system that tracks a desired path, we use simple bicycle kinematic model assuming that the car is symmetric about longitudinal axis. The model equations are:
 
-x[t+1]=x[t]+v[t]*cos(psi[t])*dt
+```
+x[t+1] = x[t] + v[t] * cos(psi[t]) * dt
 
-y[t+1]=y[t]+v[t]*sin(psi[t])*dt
+y[t+1] = y[t] + v[t] * sin(psi[t]) * dt
 
-psi[t+1]=psi[t]+v[t]/L_f
+psi[t+1] = psi[t] + v[t]/Lf * delta[t] * dt
+
+v[t+1] = v[t] + a[t] * dt
+
+cte[t+1] = f(x[t]) - y[t] + v[t] * sin(epsi[t]) * dt
+
+epsi[t+1] = psi[t] - psi_des + v[t]/Lf * delta[t] * dt
+```
