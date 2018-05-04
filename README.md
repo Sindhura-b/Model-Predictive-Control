@@ -71,7 +71,8 @@ cross track error (cte)
 
 yaw angle error (epsi)
 
-The two actuator inputs are:
+
+The model also has two actuator inputs which include:
 
 steering angle (delta)
 
