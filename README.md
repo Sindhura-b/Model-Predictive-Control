@@ -77,3 +77,23 @@ The model also has two actuator inputs which include:
 * steering angle (delta)
 
 * acceleration (a)
+
+## Choosing N and dt
+
+T is the prediction horizon over which future predictions are made to determine the optimal control inputs. It is the product of two variables, N and dt. N is the number of timesteps in the horizon and dt is how much time elapses between actuations. Larger T makes the control inputs more stable, however having smaller dt at the same time makes the control inputs more accurate but leads to slower controller performance and sometimes make the vehicle go off the track. Also, T must not be choosen too large as the future might not be same as we expect it and change due to disturbances from surroundings. Several combinations of N (20, 15, 10) and dt (0.1, 0.05, 0.07) have been tried out to find the values that minize the cost. The best that worked for me is N = 10 and dt = 0.1 sec. It must be noted that tuning of N and dt was done simultaneously with the tuning of cost function weights.
+
+## Polynomial Fitting and MPC Preprocessing
+
+The way points provided by the simulator are in global frame and have to transformed to local frame. This transformation is done by using vehicle's position co-ordinates and orientation. These way points are fitted to a 3rd degree polynomial as the track includes several turnings, whose curvature can be best defined by a higher degree polynomial. The coefficients of the polynomial obtained from curve fitting are then used to calculate the cross track error (cte) and yaw angle error (epsi) based on the vehicle's position. 
+
+## Model Predictive Control with Latency
+
+Latency of 100sec is included between actuation commands which is usually the case in a real car. This can be explicitly taken into account by an MPC algorithm. This is dealt by including a kinematic vehicle model that simulates from the current state for the duration of the latency. The resulting state from the simulation is the new initial state for MPC. 
+
+## Result
+
+The vehicle drives around the track safely after tuning the weights associated with the cost function and parameters of the  prediction horizon. The maximum speed reached by the vehicle during simulation is 40 mph.
+
+
+
+
